@@ -1,9 +1,4 @@
-﻿Person p = new Person();
-p.FirstName = "Esther";
-p.LastName = "Stassin";
-p.BirthDate = new DateTime(1992, 2, 9);
-
-
+﻿
 // 1. Créer une classe "Person" implémentant les propriétés publiques
 // string FirstName, string LastName, DateTime BirthDate
 public class Person
