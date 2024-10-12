@@ -13,11 +13,13 @@ public class CurrentAccount
 
     public void Withdraw(double amount)
     {
-        Balance -= amount;
+        if(amount > 0 && Balance>amount && (Balance-amount)>CreditLine)
+        {Balance -= amount;}
+        
     }
 
     public void Deposit(double amount)
     {
-        Balance += amount;
+        if (amount>0) {Balance += amount;}
     }
 }
