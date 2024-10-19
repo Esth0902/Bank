@@ -10,7 +10,7 @@ public class CurrentAccount : Account
 
     public override void Withdraw(double amount)
     {
-        if (amount > 0 && Balance > amount && (Balance - amount) > CreditLine)
+        if ((Balance - amount) > CreditLine)
         {
             base.Withdraw(amount);
         }
@@ -19,6 +19,20 @@ public class CurrentAccount : Account
             Console.WriteLine($"You don't have enough money to withdraw, credit line = {CreditLine}");
         }
     }
-    
+
+    protected override double CalculInterest()
+    {
+        var interest = 0.00;
+        if (Balance > 0)
+        {
+            interest = Balance * 0.03;
+        }
+        else
+        {
+            interest = Balance * 0.0975;
+        }
+        return interest;
+    }
+
 }
 

@@ -7,4 +7,14 @@
 public class SavingsAccount : Account
 {
     public DateTime DateLastWithdraw { get; set; }
+
+
+    protected override double CalculInterest()
+    {
+        var interest = Balance * 0.045;
+        return interest;
+    }
+    
 }
+
+

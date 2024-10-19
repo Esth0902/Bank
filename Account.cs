@@ -1,6 +1,6 @@
 ﻿namespace Bank;
 
-public class Account
+public abstract class Account
 {
     public override string ToString()
     {
@@ -8,7 +8,7 @@ public class Account
     }
 
     public string Number { get; set; }
-    public double Balance { get; private set; } //attention, doit être private -- à changer
+    public double Balance { get; private set; }
     public Person Owner { get; set; }
     
     public virtual void Withdraw(double amount)
@@ -25,5 +25,12 @@ public class Account
         {
             Balance += amount;
         }
+    }
+
+    protected abstract double CalculInterest();
+
+    public double ApplyInterest()
+    {
+        return Balance += CalculInterest();
     }
 }
