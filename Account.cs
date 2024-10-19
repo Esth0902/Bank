@@ -8,7 +8,7 @@ public class Account
     }
 
     public string Number { get; set; }
-    public double Balance { get; protected set; }
+    public double Balance { get; protected set; } //attention, doit être private -- à changer
     public Person Owner { get; set; }
     
     public virtual void Withdraw(double amount)
