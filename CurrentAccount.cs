@@ -12,7 +12,11 @@ public class CurrentAccount : Account
     {
         if (amount > 0 && Balance > amount && (Balance - amount) > CreditLine)
         {
-            Balance -= amount;
+            base.Withdraw(amount);
+        }
+        else
+        {
+            Console.WriteLine($"You don't have enough money to withdraw, credit line = {CreditLine}");
         }
     }
     

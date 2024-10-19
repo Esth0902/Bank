@@ -6,7 +6,7 @@ using Bank;
 
 var bank = new Bank1() {Name = "Ifosup"};
 var esther = new Person() {FirstName = "Esther", LastName = "Stassin"};
-var account1 = new CurrentAccount() {Number = "A1", Owner = esther };
+var account1 = new CurrentAccount() {Number = "A1", Owner = esther, CreditLine = 0};
 var account2 = new CurrentAccount() {Number = "A2", Owner = esther };
 var saving1 = new SavingsAccount() {Number = "S1", Owner = esther };
 var test = new Person() {FirstName = "Test", LastName = "Testlastname"};
@@ -16,6 +16,7 @@ var saving2 = new SavingsAccount() {Number = "S2", Owner = test };
 bank.AddAccount(account1);
 account1.Deposit(500);
 account1.Withdraw(100);
+account1.Withdraw(500);
 
 bank.AddAccount(account2);
 account2.Deposit(2000);
