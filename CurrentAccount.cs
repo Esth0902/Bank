@@ -6,6 +6,8 @@
 
 public class CurrentAccount : Account, IBankAccount
 {
+    public CurrentAccount(Person owner, string number, double balance) : base(owner, number, balance){}
+    public CurrentAccount(Person owner, string number) : base(owner, number) {}
     public double CreditLine { get; set; }
 
     public override void Withdraw(double amount)

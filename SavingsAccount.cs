@@ -21,12 +21,15 @@ public class SavingsAccount : Account
 */
 
 
-
-public class SavingsAccount : Account, IAccount
+//15. Le cas échéant, ajoutez le ou les constructeurs aux classes "current" et "Savingsaccounts"
+public class SavingsAccount : Account
 {
     public DateTime DateLastWithdraw { get; set; }
+    
+    public SavingsAccount(Person owner, string number, double balance) : base(owner, number, balance){}
+    public SavingsAccount(Person owner, string number) : base(owner, number) {}
 
-
+    
     protected override double CalculInterest()
     {
         var interest = Balance * 0.045;

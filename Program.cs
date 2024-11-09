@@ -1,5 +1,6 @@
 ﻿
 
+using System.Formats.Asn1;
 using System.Runtime;
 using Bank;
 
@@ -12,16 +13,14 @@ using Bank;
 
 var bank = new Bank1() {Name = "Ifosup"};
 var esther = new Person() {FirstName = "Esther", LastName = "Stassin"};
-var account1 = new CurrentAccount() {Number = "A1", Owner = esther, CreditLine = -100};
-var account2 = new CurrentAccount() {Number = "A2", Owner = esther };
-var saving1 = new SavingsAccount() {Number = "S1", Owner = esther };
+var account1 = new CurrentAccount(esther, "A1", 100) {CreditLine = -100 };
+var account2 = new CurrentAccount(esther, "A2");
+var saving1 = new SavingsAccount(esther, "S1");
 var test = new Person() {FirstName = "Test", LastName = "Testlastname"};
-var account4 = new CurrentAccount() {Number = "A3", Owner = test };
-var saving2 = new SavingsAccount() {Number = "S2", Owner = test };
+var account4 = new CurrentAccount(test, "A3") { CreditLine = -200 };
+var saving2 = new SavingsAccount(test, "S2") {};
 
 bank.AddAccount(account1);
-account1.Deposit(500);
-account1.Withdraw(100);
 
 bank.AddAccount(account2);
 account2.Deposit(2000);
