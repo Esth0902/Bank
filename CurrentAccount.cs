@@ -4,7 +4,7 @@
 // les propriétés publiques string Number, double Balance (lecture seule), double CreditLine, Person Owner
 // les méthodes publiques void Withdraw(double amount), void Deposit(double amount)
 
-public class CurrentAccount : Account
+public class CurrentAccount : Account, IBankAccount
 {
     public double CreditLine { get; set; }
 

@@ -23,7 +23,7 @@ public class Bank1
         }
     }
 
-    public void DeleteAccount(Account account)
+    public void DeleteAccount(IBankAccount account)
     {
         if (Accounts.ContainsKey(account.Number))
         {

@@ -3,6 +3,12 @@
 using System.Runtime;
 using Bank;
 
+/*void Withdrawal(IAccount account, double amount)
+{
+    account.Withdraw(amount);
+    Console.WriteLine(account.Balance);
+}
+*/
 
 var bank = new Bank1() {Name = "Ifosup"};
 var esther = new Person() {FirstName = "Esther", LastName = "Stassin"};
@@ -46,3 +52,4 @@ bank.GetBalance(account1);
 saving1.ApplyInterest();
 bank.GetBalance(saving1);
 
+//Withdrawal(account1, 500);
