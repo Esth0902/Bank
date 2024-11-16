@@ -25,7 +25,7 @@ public class SavingsAccount : Account
 
 public class SavingsAccount : Account // héritage de la classe Account
 {
-    public DateTime DateLastWithdraw { get; set; } // ?? à chaque retrait, mettre à jour lastwithdraw
+    public DateTime DateLastWithdraw { get; private set; } // ?? à chaque retrait, mettre à jour lastwithdraw
     public SavingsAccount(Person owner, string number, double balance) : base(owner, number, balance){}
     public SavingsAccount(Person owner, string number) : base(owner, number) {}
 

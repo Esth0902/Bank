@@ -8,7 +8,18 @@ public class CurrentAccount : Account, IBankAccount // héritage de Account et r
 {
     public CurrentAccount(Person owner, string number, double balance) : base(owner, number, balance){}
     public CurrentAccount(Person owner, string number) : base(owner, number) {}
-    public double CreditLine { get; set; } // ligne de crédit (solde négatif)
+    
+    double creditLine = 1000;
+    public double CreditLine
+    {
+        get => creditLine;
+
+        set 
+        {
+            ArgumentOutOfRangeException.ThrowIfNegativeOrZero(creditLine);
+            creditLine = value;
+        }
+    }
 
     public override void Withdraw(double amount) // Fonction retrait
     {

@@ -1,7 +1,21 @@
 ﻿namespace Bank;
 
+//18. Dans la classe Account : 
+// au niveau de la méthode "Deposit" déclenchez une exception de type "ArgumentOutOfRangeException", si le montant n'est pas supérieur à 0
+// Withdraw : idem + déclenchement exception "InsufficientBalanceException" si montant ne peut être retiré
+
+
 // 12. Définir l'interface "IAccount", afin de limiter l'accès à consulter la propriété "Balance" et d'utiliser les méthodes
 // Deposit et Withdraw
+
+public class InsufficientBalanceException : Exception 
+{
+    public InsufficientBalanceException(string message) : base(message)
+    {
+        Console.WriteLine(message);
+    }
+}
+
 public interface IAccount
 {
     public double Balance { get; }
@@ -57,11 +71,16 @@ public abstract class Account : IBankAccount
         {
             Balance -= amount; //retire le montant du solde du compte
         }
+        else {throw new InsufficientBalanceException("This amount can't be withdrawed");}
     }
     
     public void Deposit(double amount) // fonction versement
     {
-        if (amount > 0) // si le montant est supérieur à 0
+        if (amount <= 0) // Vérification si le montant est <= 0
+        {
+            throw new ArgumentOutOfRangeException(nameof(amount), "The deposit amount must be greater than 0."); 
+        }
+        else// si le montant est supérieur à 0
         {
             Balance += amount; // ajout du montant au solde du compte
         }
