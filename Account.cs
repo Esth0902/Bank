@@ -14,7 +14,7 @@ public interface IAccount
 // 13. Définir l'interface "IBankAccount" ayant les mêmes fonctionnalités que "IAccount". Elle lui permettra en plus d'invoquer
 // la méthode du "ApplyInterest" et offrir un accès en lecture seule au "Owner" et au "Number".
 
-public interface IBankAccount : IAccount
+public interface IBankAccount : IAccount // reprend les règles du contrat de IAccount et en ajoute
 {
     public double ApplyInterest();
     public Person Owner { get; }
@@ -29,21 +29,21 @@ public abstract class Account : IBankAccount
 {
     public override string ToString()
     {
-        return $"Account ID : {Number} - Owner : {Owner} - Balance : {Balance}";
+        return $"Account ID : {Number} - Owner : {Owner} - Balance : {Balance}"; //pour la fonction display account
     }
     
-    public string Number { get; set; }
+    public string Number { get; private set; }
     public double Balance { get; private set; }
-    public Person Owner { get; set; }
+    public Person Owner { get; private set; }
 
-    public Account(Person owner, string number, double balance)
+    public Account(Person owner, string number, double balance) // créer un nouveau compte avec Owner, numéro et solde)
     {
         Owner = owner;
         Number = number;
         Balance = balance;
     }
 
-    public Account(Person owner, string number)
+    public Account(Person owner, string number) // créer un nouveau compte avec uniquement owner et numéro
     {
         Number = number;
         Owner = owner;
@@ -51,25 +51,25 @@ public abstract class Account : IBankAccount
     }
 
     
-    public virtual void Withdraw(double amount)
+    public virtual void Withdraw(double amount) // Fonction retrait de base
     {
-        if (amount > 0 && Balance > amount)
+        if (amount > 0 ) // si le montant du retrait est supérieur à 0 
         {
-            Balance -= amount;
+            Balance -= amount; //retire le montant du solde du compte
         }
     }
     
-    public void Deposit(double amount)
+    public void Deposit(double amount) // fonction versement
     {
-        if (amount > 0)
+        if (amount > 0) // si le montant est supérieur à 0
         {
-            Balance += amount;
+            Balance += amount; // ajout du montant au solde du compte
         }
     }
 
-    protected abstract double CalculInterest();
+    protected abstract double CalculInterest(); // fonction calcul intérêts spécifique à savingaccount et currentaccount
 
-    public double ApplyInterest()
+    public double ApplyInterest() // fonction pour appliquer le calcul des intérêts au solde du compte
     {
         return Balance += CalculInterest();
     }
