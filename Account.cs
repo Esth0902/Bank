@@ -106,8 +106,7 @@ public abstract class Account : IBankAccount
     
     
  
-    public delegate void NegativeBalanceDelegate(Account account);
-    public event NegativeBalanceDelegate NegativeBalanceEvent;
+    public event Action<Account> NegativeBalanceEvent;
     protected void OnNegativeBalance()
     {
         NegativeBalanceEvent?.Invoke(this);

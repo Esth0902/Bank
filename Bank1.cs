@@ -9,6 +9,10 @@ public class Bank1
     public string Name {get; set; }
     public Dictionary<string, Account> Accounts { get; } = []; // initialisation du dictionnaire Account
 
+    public void NegativeBalanceAction(Account account)
+    {
+        Console.WriteLine($"Le numéro de compte {account.Number} vient de passer en négatif.");
+    }
     
     public void AddAccount(Account account)  // Fonction AddAccount
     {
@@ -16,6 +20,9 @@ public class Bank1
         {
             Accounts.Add(account.Number, account);  //ajoute le nouveau compte
             Console.WriteLine($"Account {account.Number} has been added"); //message info
+            if (account is CurrentAccount) {
+                account.NegativeBalanceEvent += NegativeBalanceAction;
+                }
         }
         else // sinon message info ce compte existe déjà
         {
@@ -68,10 +75,7 @@ public class Bank1
         Console.WriteLine($"Montant total du compte de {person} = {total}");
     }
     
-    public void NegativeBalanceAction(Account account)
-    {
-        Console.WriteLine($"Le numéro de compte {account.Number} vient de passer en négatif.");
-    }
+
     
 }
 

@@ -17,15 +17,12 @@ try
 {var account1 = new CurrentAccount(esther, "A1", 100) { CreditLine = 300 };}
 catch (ArgumentOutOfRangeException ex)
 {Console.WriteLine(ex.Message);}
-//var account1 = new CurrentAccount(esther, "A1", 100) {CreditLine = 300 };
 var saving1 = new SavingsAccount(esther, "S1");
 var test = new Person("Test", "Testlastname");
 var account2 = new CurrentAccount(test, "A2") { CreditLine = 200 };
 var saving2 = new SavingsAccount(test, "S2") {};
 
-//bank.AddAccount(account1);
 bank.AddAccount(account2);
-account2.NegativeBalanceEvent += bank.NegativeBalanceAction;
 
 try
 {account2.Deposit(2000);}
