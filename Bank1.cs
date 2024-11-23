@@ -68,6 +68,11 @@ public class Bank1
         Console.WriteLine($"Montant total du compte de {person} = {total}");
     }
     
+    public void NegativeBalanceAction(Account account)
+    {
+        Console.WriteLine($"Le numéro de compte {account.Number} vient de passer en négatif.");
+    }
+    
 }
 
     

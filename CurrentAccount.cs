@@ -16,17 +16,21 @@ public class CurrentAccount : Account, IBankAccount // héritage de Account et r
 
         set 
         {
-            ArgumentOutOfRangeException.ThrowIfNegativeOrZero(creditLine);
+            ArgumentOutOfRangeException.ThrowIfNegativeOrZero(value);
             creditLine = value;
         }
     }
 
     public override void Withdraw(double amount) // Fonction retrait
     {
-        if ((Balance - amount) > CreditLine) //si le solde - le montant du retrait est supérieur à la ligne de crédit
+        if ((Balance - amount) > (0 - CreditLine)) //si le solde - le montant du retrait est supérieur à la ligne de crédit
         {
             base.Withdraw(amount);//appelle la fonction withdraw de la classe Account
             Console.WriteLine($"Withdrawal successful, new balance : {Balance}");
+            if (Balance < 0) 
+            {
+                OnNegativeBalance();
+            }
         }
         else // sinon, message info "vous n'avez pas assez d'argent pour le retrait, ligne de crédit = xx
         {
@@ -47,6 +51,9 @@ public class CurrentAccount : Account, IBankAccount // héritage de Account et r
         }
         return interest; // retourne les intérêts à appliquer
     }
+    
+    
+    
 
 }
 

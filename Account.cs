@@ -4,9 +4,20 @@
 // au niveau de la méthode "Deposit" déclenchez une exception de type "ArgumentOutOfRangeException", si le montant n'est pas supérieur à 0
 // Withdraw : idem + déclenchement exception "InsufficientBalanceException" si montant ne peut être retiré
 
+//20. Dans la classe Account Ajoutez un évément appelé "NegativeBalanceEvent" dont le délégué "NegativeBalanceDelegate"
+// devra recevoir en paramètre un objet de type account et ne rien renvoyer
+
+//21. au niveau de la classe "Current", déclencher l'événement "NegativeBalanceEvent" si le compte passe en négatif et
+// uniquement dans ce cas.
+
+//22. Au niveau de la class "Bank", ajouter une méthode qui traitera l'événement "NegativeBalanceAction" en affichant dans la console
+// "Le numéro de compte {number} vient de passer en négatif".
 
 // 12. Définir l'interface "IAccount", afin de limiter l'accès à consulter la propriété "Balance" et d'utiliser les méthodes
 // Deposit et Withdraw
+
+
+
 
 public class InsufficientBalanceException : Exception 
 {
@@ -91,5 +102,14 @@ public abstract class Account : IBankAccount
     public double ApplyInterest() // fonction pour appliquer le calcul des intérêts au solde du compte
     {
         return Balance += CalculInterest();
+    }
+    
+    
+ 
+    public delegate void NegativeBalanceDelegate(Account account);
+    public event NegativeBalanceDelegate NegativeBalanceEvent;
+    protected void OnNegativeBalance()
+    {
+        NegativeBalanceEvent?.Invoke(this);
     }
 }
